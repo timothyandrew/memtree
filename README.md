@@ -6,45 +6,47 @@ Filesystem-based memory tree for AI agents. Persist memories on disk in a tree s
 
 ```mermaid
 graph TD
-    root["~/.memtree/"]
-    root --- rust["rust/"]
-    root --- python["python/"]
-    root --- tools["tools/"]
+    root["🌳 ~/.memtree/"]
+    root --- rust["📂 rust/"]
+    root --- python["📂 python/"]
+    root --- tools["📂 tools/"]
 
-    rust --- errors["errors.md<br/><i>Error handling patterns</i>"]
-    rust --- async["async/"]
-    rust --- lifetimes["lifetimes.md<br/><i>Ownership & borrowing rules</i>"]
+    rust --- errors["📝 errors.md<br/><i>Error handling patterns</i>"]
+    rust --- async["📂 async/"]
+    rust --- lifetimes["📝 lifetimes.md<br/><i>Ownership &amp; borrowing rules</i>"]
 
-    async --- tokio["tokio.md<br/><i>Tokio runtime usage</i>"]
-    async --- streams["streams.md<br/><i>Async iterator patterns</i>"]
+    async --- tokio["📝 tokio.md<br/><i>Tokio runtime usage</i>"]
+    async --- streams["📝 streams.md<br/><i>Async iterator patterns</i>"]
 
-    python --- decorators["decorators.md<br/><i>Decorator patterns</i>"]
-    python --- typing["typing.md<br/><i>Type hint cheatsheet</i>"]
+    python --- decorators["📝 decorators.md<br/><i>Decorator patterns</i>"]
+    python --- typing["📝 typing.md<br/><i>Type hint cheatsheet</i>"]
 
-    tools --- git["git/"]
-    tools --- docker["docker.md<br/><i>Dockerfile best practices</i>"]
+    tools --- git["📂 git/"]
+    tools --- docker["📝 docker.md<br/><i>Dockerfile best practices</i>"]
 
-    git --- rebase["rebase.md<br/><i>Interactive rebase workflow</i>"]
-    git --- hooks["hooks.md<br/><i>Useful git hooks</i>"]
+    git --- rebase["📝 rebase.md<br/><i>Interactive rebase workflow</i>"]
+    git --- hooks["📝 hooks.md<br/><i>Useful git hooks</i>"]
 
-    style root fill:#f9f,stroke:#333
-    style rust fill:#ffd,stroke:#333
-    style python fill:#ffd,stroke:#333
-    style tools fill:#ffd,stroke:#333
-    style async fill:#ffd,stroke:#333
-    style git fill:#ffd,stroke:#333
-    style errors fill:#fff,stroke:#333
-    style lifetimes fill:#fff,stroke:#333
-    style tokio fill:#fff,stroke:#333
-    style streams fill:#fff,stroke:#333
-    style decorators fill:#fff,stroke:#333
-    style typing fill:#fff,stroke:#333
-    style docker fill:#fff,stroke:#333
-    style rebase fill:#fff,stroke:#333
-    style hooks fill:#fff,stroke:#333
+    style root fill:#7c3aed,stroke:#5b21b6,color:#fff,font-weight:bold
+    style rust fill:#2563eb,stroke:#1d4ed8,color:#fff,font-weight:bold
+    style python fill:#2563eb,stroke:#1d4ed8,color:#fff,font-weight:bold
+    style tools fill:#2563eb,stroke:#1d4ed8,color:#fff,font-weight:bold
+    style async fill:#0891b2,stroke:#0e7490,color:#fff,font-weight:bold
+    style git fill:#0891b2,stroke:#0e7490,color:#fff,font-weight:bold
+    style errors fill:#ecfdf5,stroke:#10b981,color:#064e3b
+    style lifetimes fill:#ecfdf5,stroke:#10b981,color:#064e3b
+    style tokio fill:#ecfdf5,stroke:#10b981,color:#064e3b
+    style streams fill:#ecfdf5,stroke:#10b981,color:#064e3b
+    style decorators fill:#ecfdf5,stroke:#10b981,color:#064e3b
+    style typing fill:#ecfdf5,stroke:#10b981,color:#064e3b
+    style docker fill:#ecfdf5,stroke:#10b981,color:#064e3b
+    style rebase fill:#ecfdf5,stroke:#10b981,color:#064e3b
+    style hooks fill:#ecfdf5,stroke:#10b981,color:#064e3b
+
+    linkStyle default stroke:#94a3b8,stroke-width:2px
 ```
 
-Directories (yellow) hold topic summaries. Leaves (white) hold the actual memories with frontmatter.
+> **Purple** = tree root · **Blue** = topic directories · **Teal** = subdirectories · **Green** = memory leaves
 
 ## Install
 
