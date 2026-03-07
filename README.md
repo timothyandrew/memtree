@@ -2,6 +2,50 @@
 
 Filesystem-based memory tree for AI agents. Persist memories on disk in a tree structure grouped by topic — agents keep top-level summaries in context and load deeper levels on demand.
 
+## How It Looks
+
+```mermaid
+graph TD
+    root["~/.memtree/"]
+    root --- rust["rust/"]
+    root --- python["python/"]
+    root --- tools["tools/"]
+
+    rust --- errors["errors.md<br/><i>Error handling patterns</i>"]
+    rust --- async["async/"]
+    rust --- lifetimes["lifetimes.md<br/><i>Ownership & borrowing rules</i>"]
+
+    async --- tokio["tokio.md<br/><i>Tokio runtime usage</i>"]
+    async --- streams["streams.md<br/><i>Async iterator patterns</i>"]
+
+    python --- decorators["decorators.md<br/><i>Decorator patterns</i>"]
+    python --- typing["typing.md<br/><i>Type hint cheatsheet</i>"]
+
+    tools --- git["git/"]
+    tools --- docker["docker.md<br/><i>Dockerfile best practices</i>"]
+
+    git --- rebase["rebase.md<br/><i>Interactive rebase workflow</i>"]
+    git --- hooks["hooks.md<br/><i>Useful git hooks</i>"]
+
+    style root fill:#f9f,stroke:#333
+    style rust fill:#ffd,stroke:#333
+    style python fill:#ffd,stroke:#333
+    style tools fill:#ffd,stroke:#333
+    style async fill:#ffd,stroke:#333
+    style git fill:#ffd,stroke:#333
+    style errors fill:#fff,stroke:#333
+    style lifetimes fill:#fff,stroke:#333
+    style tokio fill:#fff,stroke:#333
+    style streams fill:#fff,stroke:#333
+    style decorators fill:#fff,stroke:#333
+    style typing fill:#fff,stroke:#333
+    style docker fill:#fff,stroke:#333
+    style rebase fill:#fff,stroke:#333
+    style hooks fill:#fff,stroke:#333
+```
+
+Directories (yellow) hold topic summaries. Leaves (white) hold the actual memories with frontmatter.
+
 ## Install
 
 ```sh
