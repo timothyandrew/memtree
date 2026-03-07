@@ -18,7 +18,7 @@ cargo test --test smoke  # integration tests only
 
 - `src/main.rs` — entrypoint, clap dispatch
 - `src/cli.rs` — clap derive definitions
-- `src/config.rs` — tree root resolution (--root flag > MEMTREE_ROOT env > ~/.memtree/)
+- `src/config.rs` — tree root resolution (--root flag > MEMTREE_ROOT env > .memtree/)
 - `src/error.rs` — MemtreeError enum (thiserror)
 - `src/lock.rs` — global lockfile via fs4 flock
 - `src/tree.rs` — path validation, leaf_path/dir_path helpers, atomic_write, auto_promote

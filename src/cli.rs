@@ -66,6 +66,9 @@ pub enum Command {
         dst: String,
     },
 
+    /// Print the entire tree with summaries (no leaf content)
+    Inspect,
+
     /// Delete a leaf or subtree
     Delete {
         /// Path to delete

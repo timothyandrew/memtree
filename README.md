@@ -6,7 +6,7 @@ Filesystem-based memory tree for AI agents. Persist memories on disk in a tree s
 
 ```mermaid
 graph TD
-    root["~/.memtree/"]
+    root[".memtree/"]
     root --- rust["rust/"]
     root --- python["python/"]
     root --- tools["tools/"]
@@ -86,7 +86,7 @@ memtree delete rust/error-handling
 Resolved in order:
 1. `--root <path>` flag
 2. `MEMTREE_ROOT` environment variable
-3. `~/.memtree/` (default)
+3. `.memtree/` in the current working directory (default)
 
 The root is auto-created on first write.
 
@@ -129,6 +129,7 @@ Directory summaries (`_summary.md`) are plain text.
 | `store --path <path> --summary <text> [--content <text>] [--tags t1,t2]` | Create/update a leaf (with content) or directory summary (without) | Yes |
 | `recall <path> [--full]` | Print leaf body or directory summary + children | No |
 | `ls [path] [--depth N]` | Tree listing with summaries | No |
+| `inspect` | Print entire tree with all summaries (no leaf content) | No |
 | `search <query>` | Case-insensitive substring search across all leaves | No |
 | `move <src> <dst>` | Move a leaf or subtree | Yes |
 | `delete <path> [--force]` | Remove a leaf or subtree | Yes |

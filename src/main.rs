@@ -44,6 +44,9 @@ fn run(cli: Cli) -> error::Result<()> {
         Command::Ls { path, depth } => {
             commands::ls::run(&root, path.as_deref(), depth)?;
         }
+        Command::Inspect => {
+            commands::ls::run(&root, None, usize::MAX)?;
+        }
         Command::Search { query } => {
             commands::search::run(&root, &query)?;
         }

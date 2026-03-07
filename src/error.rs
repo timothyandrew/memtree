@@ -20,9 +20,6 @@ pub enum MemtreeError {
     #[error("Directory not empty: {path} (use --force to delete)")]
     NonEmptyDirectory { path: PathBuf },
 
-    #[error("Could not determine home directory")]
-    NoHome,
-
     #[error("Failed to acquire lock: {0}")]
     LockFailure(String),
 }

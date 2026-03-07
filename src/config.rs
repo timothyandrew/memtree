@@ -1,6 +1,6 @@
 use std::path::PathBuf;
 
-use crate::error::{MemtreeError, Result};
+use crate::error::Result;
 
 pub fn resolve_root(cli_root: Option<&str>) -> Result<PathBuf> {
     if let Some(root) = cli_root {
@@ -11,6 +11,5 @@ pub fn resolve_root(cli_root: Option<&str>) -> Result<PathBuf> {
         return Ok(PathBuf::from(root));
     }
 
-    let home = std::env::var("HOME").map_err(|_| MemtreeError::NoHome)?;
-    Ok(PathBuf::from(home).join(".memtree"))
+    Ok(PathBuf::from(".memtree"))
 }

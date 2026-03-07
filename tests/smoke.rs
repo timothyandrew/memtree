@@ -169,6 +169,38 @@ fn ls_subtree() {
         .stdout(predicate::str::contains("c.md"));
 }
 
+// ── inspect ─────────────────────────────────────────────────────
+
+#[test]
+fn inspect_shows_full_tree() {
+    let root = TempDir::new().unwrap();
+
+    memtree(&root)
+        .args(["store", "--path", "rust", "--summary", "Rust topics"])
+        .assert().success();
+    memtree(&root)
+        .args(["store", "--path", "rust/errors", "--summary", "Error patterns",
+               "--content", "Use thiserror."])
+        .assert().success();
+    memtree(&root)
+        .args(["store", "--path", "rust/async", "--summary", "Async Rust"])
+        .assert().success();
+    memtree(&root)
+        .args(["store", "--path", "rust/async/tokio", "--summary", "Tokio runtime",
+               "--content", "Use #[tokio::main]."])
+        .assert().success();
+
+    // inspect shows everything regardless of depth
+    memtree(&root)
+        .args(["inspect"])
+        .assert()
+        .success()
+        .stdout(predicate::str::contains("rust/"))
+        .stdout(predicate::str::contains("errors.md"))
+        .stdout(predicate::str::contains("async/"))
+        .stdout(predicate::str::contains("tokio.md"));
+}
+
 // ── search ──────────────────────────────────────────────────────
 
 #[test]
