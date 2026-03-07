@@ -1,9 +1,10 @@
+use assert_cmd::cargo::cargo_bin_cmd;
 use assert_cmd::Command;
 use predicates::prelude::*;
 use tempfile::TempDir;
 
 fn memtree(root: &TempDir) -> Command {
-    let mut cmd = Command::cargo_bin("memtree").unwrap();
+    let mut cmd = Command::from(cargo_bin_cmd!("memtree"));
     cmd.arg("--root").arg(root.path());
     cmd
 }
