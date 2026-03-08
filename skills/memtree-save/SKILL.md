@@ -60,7 +60,34 @@ memtree store --path <dir> --summary "<short navigational description>"
 
 Use `memtree move <src> <dst>` or `memtree delete --force <path>` to reorganize for clarity.
 
-### 7. Confirm
+### 7. Update CLAUDE.md with tree index
+
+After all leaves are stored, write a `## Memtree` section at the end of the project's `CLAUDE.md` file. This section uses `@import` syntax so that new Claude Code sessions automatically discover the tree.
+
+The section must include:
+- A brief intro line explaining what the memtree contains
+- `@.memtree/<branch>/_summary.md` imports for **every** top-level branch, so agents always see the full level-1 structure
+- `@.memtree/<branch>/<leaf>.md` imports for level-2 leaves when the total CLAUDE.md stays under 200 lines (the effective context limit)
+- If importing all level-2 leaves would push CLAUDE.md over 200 lines, import only the `_summary.md` files and add a note to use `memtree recall <path>` for deeper content
+
+Example:
+```markdown
+## Memtree
+
+Saved conversation context — use `memtree inspect` for full tree, `memtree recall <path>` for leaf content.
+
+@.memtree/architecture/_summary.md
+@.memtree/commands/_summary.md
+@.memtree/decisions/_summary.md
+@.memtree/project/_summary.md
+```
+
+Rules:
+- If a `## Memtree` section already exists in CLAUDE.md, **replace it entirely** with the updated version.
+- Do not touch any other sections of CLAUDE.md.
+- Keep the section concise — summaries are enough for discovery; full content is loaded on demand via `memtree recall`.
+
+### 8. Confirm
 
 Run `memtree inspect` and print the full tree to the user with a count of leaves and branches.
 
