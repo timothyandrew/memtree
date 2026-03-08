@@ -1,6 +1,10 @@
 # memtree
 
-Filesystem-based memory tree for AI agents. Persist memories on disk in a tree structure grouped by topic — agents keep top-level summaries in context and load deeper levels on demand.
+Filesystem-based memory tree for AI agents. Persist conversation context on disk in a tree structure grouped by topic — agents keep top-level summaries in context and load deeper levels on demand.
+
+## Why
+
+AI agents lose context as conversations grow and get compressed. memtree gives them a structured place to save and retrieve knowledge across sessions. The CLI is designed to be called directly by agents (via tool use / shell commands), and the included [Claude Code skills](#claude-code-skills) provide ready-made `/memtree-save` and `/memtree-load` slash commands.
 
 ## How It Looks
 
@@ -68,6 +72,9 @@ memtree ls --depth 2
 # rust/                    Rust programming topics
 #   errors.md              Error handling patterns
 
+# Print the entire tree
+memtree inspect
+
 # Recall a memory
 memtree recall rust/errors
 
@@ -79,6 +86,40 @@ memtree move rust/errors rust/error-handling
 
 # Delete
 memtree delete rust/error-handling
+```
+
+## Claude Code Skills
+
+memtree ships with two [Claude Code skills](https://code.claude.com/docs/en/skills) that give agents slash commands for saving and loading context. Copy the `skills/` directory into your project or symlink it.
+
+### `/memtree-save` — Save conversation context
+
+Invoked manually when you want Claude to persist everything from the current conversation. The agent audits the full conversation, extracts every piece of information (decisions, code changes, errors, architecture, etc.), and stores them as leaves in the tree. It also writes a `## Memtree` index to `CLAUDE.md` with `@import` syntax so future sessions auto-discover the tree.
+
+```
+> /memtree-save
+
+# Claude will:
+# 1. Run memtree inspect to check existing tree
+# 2. Extract every topic from the conversation
+# 3. Store each as a leaf with full verbatim content
+# 4. Add directory summaries
+# 5. Update CLAUDE.md with @import tree index
+# 6. Print the final tree
+```
+
+### `/memtree-load` — Load relevant context
+
+Invoked with a prompt describing what you're working on. The agent searches the tree, recalls matching leaves, and presents a structured summary.
+
+```
+> /memtree-load working on the OAuth integration
+
+# Claude will:
+# 1. Run memtree ls --depth 2 for tree overview
+# 2. Search for keywords: "OAuth", "integration", "auth"
+# 3. Recall full content of matching leaves
+# 4. Present a structured summary grouped by topic
 ```
 
 ## Tree Root
