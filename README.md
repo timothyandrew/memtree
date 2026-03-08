@@ -6,7 +6,7 @@ Filesystem-based memory tree for AI agents. Persist conversation context on disk
 
 AI agents lose context as conversations grow and get compressed. memtree gives them a structured place to save and retrieve knowledge across sessions. The CLI is designed to be called directly by agents (via tool use / shell commands), and the included [Claude Code skills](#claude-code-skills) provide ready-made `/memtree-save` and `/memtree-load` slash commands.
 
-This project is built almost entirely with [Claude Code](https://claude.com/claude-code) and is an exploration of how tree-based memory might improve on Claude's existing flat-file auto-memory. It's a working experiment, not a polished tool.
+This project is built almost entirely with [Claude Code](https://claude.com/claude-code) (this includes the READMEs and all other text in this repo) and is an exploration of how tree-based memory might improve on Claude's existing flat-file auto-memory. It's a working experiment, not a polished tool.
 
 ## How It Looks
 
@@ -167,15 +167,15 @@ Directory summaries (`_summary.md`) are plain text.
 
 ## Commands
 
-| Command | Description | Locks |
-|---|---|---|
-| `store --path <path> --summary <text> [--content <text>] [--tags t1,t2]` | Create/update a leaf (with content) or directory summary (without) | Yes |
-| `recall <path> [--full]` | Print leaf body or directory summary + children | No |
-| `ls [path] [--depth N]` | Tree listing with summaries | No |
-| `inspect` | Print entire tree with all summaries (no leaf content) | No |
-| `search <query>` | Case-insensitive substring search across all leaves | No |
-| `move <src> <dst>` | Move a leaf or subtree | Yes |
-| `delete <path> [--force]` | Remove a leaf or subtree | Yes |
+| Command                                                                  | Description                                                        | Locks |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------ | ----- |
+| `store --path <path> --summary <text> [--content <text>] [--tags t1,t2]` | Create/update a leaf (with content) or directory summary (without) | Yes   |
+| `recall <path> [--full]`                                                 | Print leaf body or directory summary + children                    | No    |
+| `ls [path] [--depth N]`                                                  | Tree listing with summaries                                        | No    |
+| `inspect`                                                                | Print entire tree with all summaries (no leaf content)             | No    |
+| `search <query>`                                                         | Case-insensitive substring search across all leaves                | No    |
+| `move <src> <dst>`                                                       | Move a leaf or subtree                                             | Yes   |
+| `delete <path> [--force]`                                                | Remove a leaf or subtree                                           | Yes   |
 
 ## Concurrency
 
