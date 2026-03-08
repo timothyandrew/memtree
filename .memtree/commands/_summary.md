@@ -1,0 +1,1 @@
+CLI command details (store, recall, ls, inspect, search, move, delete)
