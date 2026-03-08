@@ -46,40 +46,55 @@ cargo test --test smoke  # integration tests only
 
 Saved conversation context — use `memtree inspect` for full tree, `memtree recall <path>` for leaf content.
 
+### architecture/ — Architecture and design patterns (format, concurrency, validation)
 @.memtree/architecture/_summary.md
-@.memtree/architecture/auto-promotion.md
-@.memtree/architecture/concurrency.md
-@.memtree/architecture/on-disk-format.md
-@.memtree/architecture/path-validation.md
-@.memtree/architecture/stdin-content.md
+- auto-promotion — Leaf becomes directory when storing nested path @.memtree/architecture/auto-promotion.md
+- concurrency — Flock for writes, no lock for reads @.memtree/architecture/concurrency.md
+- on-disk-format — On-disk format for leaves and directories @.memtree/architecture/on-disk-format.md
+- path-validation — Path validation rules for logical paths @.memtree/architecture/path-validation.md
+- stdin-content — Stdin content reading via --content - flag @.memtree/architecture/stdin-content.md
+
+### commands/ — CLI command details (store, recall, ls, inspect, search, move, delete)
 @.memtree/commands/_summary.md
-@.memtree/commands/delete.md
-@.memtree/commands/ls-and-inspect.md
-@.memtree/commands/move.md
-@.memtree/commands/recall.md
-@.memtree/commands/search.md
-@.memtree/commands/store.md
+- delete — Remove a leaf or subtree @.memtree/commands/delete.md
+- ls-and-inspect — Tree listing commands @.memtree/commands/ls-and-inspect.md
+- move — Move a leaf or subtree @.memtree/commands/move.md
+- recall — Print leaf body or directory info @.memtree/commands/recall.md
+- search — Case-insensitive substring search across leaves @.memtree/commands/search.md
+- store — Create/update leaves or directory summaries @.memtree/commands/store.md
+
+### commits/ — Git commit history and session logs
 @.memtree/commits/_summary.md
-@.memtree/commits/session-history.md
+- session-history — Commits made in this session @.memtree/commits/session-history.md
+
+### decisions/ — Key design and architecture decisions
 @.memtree/decisions/_summary.md
-@.memtree/decisions/cwd-local-root.md
-@.memtree/decisions/inspect-implementation.md
-@.memtree/decisions/skill-format.md
+- cwd-local-root — Tree root is .memtree/ in CWD, not ~/.memtree/ @.memtree/decisions/cwd-local-root.md
+- inspect-implementation — Inspect implemented as ls with unlimited depth @.memtree/decisions/inspect-implementation.md
+- skill-format — Skill file format and conventions used @.memtree/decisions/skill-format.md
+
+### project/ — Project overview, dependencies, and development workflow
 @.memtree/project/_summary.md
-@.memtree/project/dependencies.md
-@.memtree/project/overview.md
-@.memtree/project/workflow.md
+- dependencies — Rust crate dependencies @.memtree/project/dependencies.md
+- overview — memtree project overview and purpose @.memtree/project/overview.md
+- workflow — Development workflow from CLAUDE.md @.memtree/project/workflow.md
+
+### skills/ — Claude Code skills created for this project
 @.memtree/skills/_summary.md
-@.memtree/skills/memtree-load.md
-@.memtree/skills/memtree-save.md
+- memtree-load — memtree-load skill design and location @.memtree/skills/memtree-load.md
+- memtree-save — memtree-save skill design and location @.memtree/skills/memtree-save.md
+
+### source/ — Source code details for each module in src/
 @.memtree/source/_summary.md
-@.memtree/source/cli-rs.md
-@.memtree/source/commands-mod.md
-@.memtree/source/config-rs.md
-@.memtree/source/error-rs.md
-@.memtree/source/ls-rs.md
-@.memtree/source/main-rs.md
-@.memtree/source/other-modules.md
+- cli-rs — src/cli.rs clap derive definitions @.memtree/source/cli-rs.md
+- commands-mod — src/commands/mod.rs module declarations @.memtree/source/commands-mod.md
+- config-rs — src/config.rs tree root resolution @.memtree/source/config-rs.md
+- error-rs — src/error.rs MemtreeError enum @.memtree/source/error-rs.md
+- ls-rs — src/commands/ls.rs tree listing with depth control @.memtree/source/ls-rs.md
+- main-rs — src/main.rs entrypoint and clap dispatch @.memtree/source/main-rs.md
+- other-modules — leaf.rs, tree.rs, lock.rs, summary.rs module purposes @.memtree/source/other-modules.md
+
+### testing/ — Unit and integration test details
 @.memtree/testing/_summary.md
-@.memtree/testing/integration-tests.md
-@.memtree/testing/unit-tests.md
+- integration-tests — Integration tests in tests/smoke.rs @.memtree/testing/integration-tests.md
+- unit-tests — Unit tests in src/ modules @.memtree/testing/unit-tests.md

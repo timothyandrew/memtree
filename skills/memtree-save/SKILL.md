@@ -66,9 +66,9 @@ After all leaves are stored, write a `## Memtree` section at the end of the proj
 
 The section must include:
 - A brief intro line explaining what the memtree contains
-- `@.memtree/<branch>/_summary.md` imports for **every** top-level branch, so agents always see the full level-1 structure
-- `@.memtree/<branch>/<leaf>.md` imports for level-2 leaves when the total CLAUDE.md stays under 200 lines (the effective context limit)
-- If importing all level-2 leaves would push CLAUDE.md over 200 lines, import only the `_summary.md` files and add a note to use `memtree recall <path>` for deeper content
+- For **every** top-level branch: a line with the branch name and its summary, followed by `@.memtree/<branch>/_summary.md` import
+- For level-2 leaves: a line with the leaf name and its summary, followed by `@.memtree/<branch>/<leaf>.md` import — include these when the total CLAUDE.md stays under 200 lines
+- If importing all level-2 leaves would push CLAUDE.md over 200 lines, include only the branch-level entries and add a note to use `memtree recall <path>` for deeper content
 
 Example:
 ```markdown
@@ -76,16 +76,22 @@ Example:
 
 Saved conversation context — use `memtree inspect` for full tree, `memtree recall <path>` for leaf content.
 
+### architecture/ — Architecture and design patterns
 @.memtree/architecture/_summary.md
+- auto-promotion — Leaf becomes directory when storing nested path @.memtree/architecture/auto-promotion.md
+- concurrency — Flock for writes, no lock for reads @.memtree/architecture/concurrency.md
+
+### commands/ — CLI command details
 @.memtree/commands/_summary.md
-@.memtree/decisions/_summary.md
-@.memtree/project/_summary.md
+- store — Create/update leaves or directory summaries @.memtree/commands/store.md
+- recall — Print leaf body or directory info @.memtree/commands/recall.md
 ```
 
 Rules:
 - If a `## Memtree` section already exists in CLAUDE.md, **replace it entirely** with the updated version.
 - Do not touch any other sections of CLAUDE.md.
-- Keep the section concise — summaries are enough for discovery; full content is loaded on demand via `memtree recall`.
+- The inline summaries give agents immediate context without needing to open the imported files.
+- Full leaf content is loaded on demand via `memtree recall`.
 
 ### 8. Confirm
 
