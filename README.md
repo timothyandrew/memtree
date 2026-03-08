@@ -6,6 +6,8 @@ Filesystem-based memory tree for AI agents. Persist conversation context on disk
 
 AI agents lose context as conversations grow and get compressed. memtree gives them a structured place to save and retrieve knowledge across sessions. The CLI is designed to be called directly by agents (via tool use / shell commands), and the included [Claude Code skills](#claude-code-skills) provide ready-made `/memtree-save` and `/memtree-load` slash commands.
 
+This project is built almost entirely with [Claude Code](https://claude.com/claude-code) and is an exploration of how tree-based memory might improve on Claude's existing flat-file auto-memory. It's a working experiment, not a polished tool.
+
 ## How It Looks
 
 ```mermaid
