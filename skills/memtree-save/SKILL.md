@@ -9,26 +9,60 @@ Save conversation context to a memtree, or restore it in a new session. The `mem
 
 ## Save mode (on `/memtree-save`)
 
-1. **Audit context** — identify distinct topics worth persisting: decisions, code snippets, error messages, facts, architectural choices, debugging findings.
+### 1. Check existing tree
 
-2. **Plan tree paths** — choose a logical path for each topic (e.g. `project/auth/oauth-flow`, `debugging/cors-issue`). Reuse existing branches when possible; run `memtree ls --depth 2` first to see what already exists.
+Run `memtree inspect` to see what's already stored. Update or extend existing leaves rather than duplicating.
 
-3. **Store leaves** — for each topic:
-   ```bash
-   memtree store --path <path> --summary "<one-line summary>" \
-     --content "<full verbatim detail>" --tags <comma-separated>
-   ```
-   - Content must be the **full verbatim data** (code, error messages, decisions with rationale) — not an abridged summary.
-   - Use tags for cross-cutting concerns (e.g. `--tags auth,debugging`).
+### 2. Deep audit — extract everything
 
-4. **Store directory summaries** — for any new parent directories:
-   ```bash
-   memtree store --path <dir> --summary "<short navigational description>"
-   ```
+Go through the entire conversation and extract **every** piece of information, no matter how small. Be exhaustive. Categories to look for:
 
-5. **Restructure if needed** — freely use `memtree move <src> <dst>` or `memtree delete --force <path>` to reorganize.
+- **Decisions made** — every choice, with full rationale and alternatives considered
+- **Code written or modified** — what changed, in which files, and why
+- **Errors encountered** — full error messages, what caused them, how they were resolved
+- **Architecture and design** — patterns, data flows, module responsibilities, formats
+- **Commands and APIs** — exact syntax, flags, behavior, edge cases
+- **Configuration** — settings, env vars, file paths, defaults
+- **Dependencies** — libraries, versions, what they're used for
+- **Test details** — what's tested, test names, how to run them, coverage gaps
+- **Commits** — hashes, messages, what each commit included
+- **Facts and context** — project structure, naming conventions, constraints, user preferences
+- **Debugging insights** — what was tried, what worked, what didn't
+- **Unfinished work** — TODOs, known issues, next steps discussed
 
-6. **Confirm** — run `memtree ls --depth 1` and print the top-level tree to the user.
+Do NOT summarize or abridge. If something was discussed, it goes in the tree.
+
+### 3. Plan tree paths
+
+Organize into logical branches (e.g. `project/`, `architecture/`, `commands/`, `debugging/`). Reuse existing branches. Aim for fine-grained leaves — one topic per leaf, not mega-leaves that cover everything.
+
+### 4. Store leaves
+
+For each topic:
+```bash
+memtree store --path <path> --summary "<one-line summary>" \
+  --content "<full verbatim detail>" --tags <comma-separated>
+```
+
+Rules:
+- **Content = full verbatim data.** Include exact code, exact error messages, exact command output. Never paraphrase when you can quote.
+- **Summaries = one-line navigational aids.** Keep them short and scannable.
+- **Tags** for cross-cutting concerns (e.g. `--tags auth,debugging,rust`).
+
+### 5. Store directory summaries
+
+For every directory (new or existing):
+```bash
+memtree store --path <dir> --summary "<short navigational description>"
+```
+
+### 6. Restructure if needed
+
+Use `memtree move <src> <dst>` or `memtree delete --force <path>` to reorganize for clarity.
+
+### 7. Confirm
+
+Run `memtree inspect` and print the full tree to the user with a count of leaves and branches.
 
 ## Restore mode (start of new conversation)
 
