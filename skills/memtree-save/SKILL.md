@@ -1,13 +1,11 @@
 ---
 name: memtree-save
-description: Persist and restore conversation context using the memtree CLI. Use when the user runs /memtree-save to save current conversation context to disk, or at the start of a new conversation to restore prior context from the memtree tree.
+description: Persist conversation context to disk using the memtree CLI. Use when the user runs /memtree-save to save current conversation context to the local .memtree directory.
 ---
 
 # memtree-save
 
-Save conversation context to a memtree, or restore it in a new session. The `memtree` binary must be in PATH. Tree root defaults to `.memtree/` in the current working directory. Override with `--root <path>` or `MEMTREE_ROOT`.
-
-## Save mode (on `/memtree-save`)
+Save conversation context to a memtree. The `memtree` binary must be in PATH. Tree root defaults to `.memtree/` in the current working directory. Override with `--root <path>` or `MEMTREE_ROOT`.
 
 ### 1. Check existing tree
 
@@ -96,10 +94,3 @@ Rules:
 ### 8. Confirm
 
 Run `memtree inspect` and print the full tree to the user with a count of leaves and branches.
-
-## Restore mode (start of new conversation)
-
-1. Run `memtree ls --depth 1` to load all top-level nodes with summaries.
-2. Print the tree so the user can see what's available.
-3. Drill deeper on demand with `memtree ls <path> --depth 1` or `memtree recall <path>`.
-4. Level 1 load is mandatory; deeper levels are on-demand only.
