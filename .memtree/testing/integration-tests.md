@@ -1,7 +1,7 @@
 ---
 summary: Integration tests in tests/smoke.rs
 created: '2026-03-09T15:01:25.328868Z'
-updated: '2026-03-09T15:01:25.328868Z'
+updated: '2026-03-09T15:36:05.872231Z'
 tags:
 - testing
 - integration-tests

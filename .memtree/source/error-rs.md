@@ -1,7 +1,7 @@
 ---
-summary: src/error.rs — MemtreeError enum
+summary: src/error.rs MemtreeError enum
 created: '2026-03-09T15:00:10.572895Z'
-updated: '2026-03-09T15:00:10.572895Z'
+updated: '2026-03-09T15:35:53.860119Z'
 tags:
 - source
 - errors

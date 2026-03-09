@@ -1,7 +1,7 @@
 ---
-summary: src/config.rs — tree root resolution
+summary: src/config.rs tree root resolution
 created: '2026-03-09T15:00:03.157649Z'
-updated: '2026-03-09T15:00:03.157649Z'
+updated: '2026-03-09T15:35:49.340637Z'
 tags:
 - source
 - config
@@ -14,4 +14,6 @@ Resolution order:
 2. MEMTREE_ROOT env var — returns PathBuf::from(root)
 3. Default: PathBuf::from(".memtree") — CWD-local
 
-Previously defaulted to ~/.memtree/ (HOME env + .memtree join) with a NoHome error variant. Changed in commit 1d57e57 to use CWD-local .memtree/ directory. The NoHome error variant and MemtreeError import were removed.
+Only imports crate::error::Result (MemtreeError import removed when NoHome variant was deleted).
+
+Previously defaulted to ~/.memtree/ (HOME env + .memtree join) with a NoHome error variant. Changed to CWD-local .memtree/ directory. The NoHome error variant and MemtreeError import were removed.
